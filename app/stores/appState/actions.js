@@ -21,3 +21,20 @@ export const showHideLoading = (visible, message) => {
     })
   }
 }
+
+export const saveGAT = gat => {
+  return dispatch => {
+    dispatch({
+      type: types.SAVE_GAT,
+      gat
+    })
+  }
+}
+
+export const logout = () => {
+  return dispatch => {
+    dispatch({
+      type: types.LOGOUT
+    })
+  }
+}

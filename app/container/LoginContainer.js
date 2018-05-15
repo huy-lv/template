@@ -11,8 +11,10 @@ import { Google } from 'expo'
 import Const from '../util/Const'
 import Strings from '../util/Strings'
 import config from '../../config'
+import { connect } from 'react-redux'
+import { saveGAT } from '../stores/appState/actions'
 
-export default class LoginContainer extends React.Component {
+class LoginContainer extends React.Component {
   state = {
     google_access_token: null
   }
@@ -38,6 +40,8 @@ export default class LoginContainer extends React.Component {
           result.accessToken
         )
         // this.setState({ google_access_token: result.accessToken })
+        //save token to redux store
+        this.props.dispatch(saveGAT(result.accessToken))
         this.props.navigation.navigate('App')
       } else {
         Alert.alert(Strings.error, 'User canceled')
@@ -47,6 +51,12 @@ export default class LoginContainer extends React.Component {
     }
   }
 }
+
+const mapStateToProps = state => ({
+  appState: state.appState
+})
+
+export default connect(mapStateToProps)(LoginContainer)
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import { logout } from '../stores/appState/actions'
 
 export default class HomeContainer extends React.Component {
   render() {
@@ -12,6 +13,16 @@ export default class HomeContainer extends React.Component {
           onPress={() => {
             this.props.navigation.navigate('Setting')
           }}
+        >
+          <Text>Setting</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            Alert.alert('Logout', 'Are you sure to logout?', [
+              { text: 'Yes', onPress: () => this.props.dispatch(logout()) },
+              { text: 'No' }
+            ])
+          }
         >
           <Text>Log out</Text>
         </TouchableOpacity>
