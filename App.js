@@ -8,6 +8,8 @@ import ProcessingPrompt from './app/component/ProcessingPrompt'
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 import HomeContainer from './app/container/HomeContainer'
 import LoginContainer from './app/container/LoginContainer'
+import AuthLoadingContainer from './app/container/AuthLoadingContainer'
+import MainTabNavigator from './app/navigator/MainTabNavigator'
 
 const store = configureStore()
 
@@ -29,8 +31,8 @@ async function registerPushNotification() {
 
 const RootSwitch = createSwitchNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
-    App: HomeContainer,
+    AuthLoading: AuthLoadingContainer,
+    App: MainTabNavigator,
     Auth: LoginContainer
   },
   {

@@ -21,10 +21,11 @@ import * as AppStateActions from '../stores/appState/actions'
 import { ScreenOrientation, Updates } from 'expo'
 import Constants from '../constants/Constants'
 import MainTabNavigator from '../navigator/MainTabNavigator'
+import LoginContainer from '../container/LoginContainer'
 
 export const RootNavigator = createStackNavigator(
   {
-    Home: TabHome
+    Home: LoginContainer
   },
   {
     navigationOptions: {

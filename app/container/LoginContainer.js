@@ -19,9 +19,6 @@ export default class LoginContainer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
         <TouchableOpacity onPress={this.loginWithGoogle}>
           <Text>login with google</Text>
         </TouchableOpacity>
@@ -40,12 +37,13 @@ export default class LoginContainer extends React.Component {
           Const.ASKEY_GOOGLE_ACCESS_TOKEN,
           result.accessToken
         )
-        this.setState({ google_access_token: result.accessToken })
+        // this.setState({ google_access_token: result.accessToken })
+        this.props.navigation.navigate('App')
       } else {
-        return Alert.alert(Strings.error, 'User canceled')
+        Alert.alert(Strings.error, 'User canceled')
       }
     } catch (e) {
-      return Alert.alert(Strings.error, JSON.stringify(e))
+      Alert.alert(Strings.error, JSON.stringify(e))
     }
   }
 }
