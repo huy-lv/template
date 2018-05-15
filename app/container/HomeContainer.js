@@ -8,7 +8,11 @@ export default class HomeContainer extends React.Component {
         <Text>Home O pen up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Setting')
+          }}
+        >
           <Text>Log out</Text>
         </TouchableOpacity>
       </View>

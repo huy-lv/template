@@ -32,7 +32,7 @@ async function registerPushNotification() {
 const RootSwitch = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingContainer,
-    App: MainTabNavigator,
+    App: RootWithNavigationState,
     Auth: LoginContainer
   },
   {

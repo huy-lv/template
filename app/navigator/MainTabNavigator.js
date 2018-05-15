@@ -20,7 +20,7 @@ export default createBottomTabNavigator(
         let iconName
         if (routeName === 'Home') {
           iconName = `ios-information-circle${focused ? '' : '-outline'}`
-        } else if (routeName === 'Settings') {
+        } else if (routeName === 'Tab2') {
           iconName = `ios-options${focused ? '' : '-outline'}`
         }
 
