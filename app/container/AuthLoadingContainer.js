@@ -7,14 +7,18 @@ import {
   View
 } from 'react-native'
 import Const from '../util/Const'
+import { connect } from 'react-redux'
+import { saveGAT } from '../stores/appState/actions'
 
-export default class AuthLoadingContainer extends React.Component {
+class AuthLoadingContainer extends React.Component {
   async componentDidMount() {
     let access_token = await AsyncStorage.getItem(
       Const.ASKEY_GOOGLE_ACCESS_TOKEN
     )
-    if (access_token) this.props.navigation.navigate('App')
-    else this.props.navigation.navigate('Auth')
+    if (access_token) {
+      this.props.navigation.navigate('App')
+      this.props.dispatch(saveGAT(access_token))
+    } else this.props.navigation.navigate('Auth')
   }
 
   render() {
@@ -25,3 +29,9 @@ export default class AuthLoadingContainer extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  appState: state.appState
+})
+
+export default connect(mapStateToProps)(AuthLoadingContainer)

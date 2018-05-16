@@ -1,8 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  AsyncStorage
+} from 'react-native'
 import { logout } from '../stores/appState/actions'
+import { connect } from 'react-redux'
+import Const from '../util/Const'
 
-export default class HomeContainer extends React.Component {
+class HomeContainer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +28,7 @@ export default class HomeContainer extends React.Component {
         <TouchableOpacity
           onPress={() =>
             Alert.alert('Logout', 'Are you sure to logout?', [
-              { text: 'Yes', onPress: () => this.props.dispatch(logout()) },
+              { text: 'Yes', onPress: this.logout },
               { text: 'No' }
             ])
           }
@@ -29,7 +38,19 @@ export default class HomeContainer extends React.Component {
       </View>
     )
   }
+
+  logout = async () => {
+    this.props.dispatch(logout())
+    await AsyncStorage.removeItem(Const.ASKEY_GOOGLE_ACCESS_TOKEN)
+    this.props.navigation.navigate('AuthLoading')
+  }
 }
+
+const mapStateToProps = state => ({
+  appState: state.appState
+})
+
+export default connect(mapStateToProps)(HomeContainer)
 
 const styles = StyleSheet.create({
   container: {

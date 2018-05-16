@@ -12,7 +12,6 @@ import Const from '../util/Const'
 import Strings from '../util/Strings'
 import config from '../../config'
 import { connect } from 'react-redux'
-import { saveGAT } from '../stores/appState/actions'
 
 class LoginContainer extends React.Component {
   state = {
@@ -41,7 +40,6 @@ class LoginContainer extends React.Component {
         )
         // this.setState({ google_access_token: result.accessToken })
         //save token to redux store
-        this.props.dispatch(saveGAT(result.accessToken))
         this.props.navigation.navigate('App')
       } else {
         Alert.alert(Strings.error, 'User canceled')
